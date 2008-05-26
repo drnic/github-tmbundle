@@ -5,7 +5,7 @@ class GitManager
   attr_reader :git, :target_file
   
   def initialize(target_file)
-    @target_file = target_file
+    @target_file = target_file || ""
     find_working_dir
   end
   
