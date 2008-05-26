@@ -5,10 +5,10 @@ class TestGitManager < Test::Unit::TestCase
     @git = GitManager.new(__FILE__) # pass this file just cause we need some file
     @git.stubs(:config).returns({
       "user.name"=>"Dr Nic Williams", "user.email"=>"drnicwilliams@gmail.com", 
-      "remote.origin.url"=>"git@github.com:tablatom/rubydoctest.git", 
+      "remote.origin.url"=>"git@github.com:drnic/newgem.git", 
       "remote.origin.fetch"=>"refs/heads/*:refs/remotes/origin/*", 
       "remote.rubyforge.fetch"=>"refs/heads/*:refs/remotes/rubyforge/*", 
-      "remote.rubyforge.url"=>"gitosis@rubyforge.org:rubydoctest.git"
+      "remote.rubyforge.url"=>"gitosis@rubyforge.org:newgem.git"
     })
   end
   
