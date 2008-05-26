@@ -1,5 +1,4 @@
-require "test/unit"
-$:.unshift(File.dirname(__FILE__) + "/../lib")
+require File.dirname(__FILE__) + "/test_helper"
 require "show_in_github"
 
 class TestShowInGithub < Test::Unit::TestCase
