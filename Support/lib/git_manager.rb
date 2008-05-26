@@ -1,5 +1,6 @@
 gem 'git', '>=1.0.0'
 require 'git'
+require 'net/http'
 
 class GitManager
   attr_reader :git, :target_file
@@ -33,7 +34,13 @@ class GitManager
     path = file.gsub(working_path, '').gsub(%r{\A/},'')
     if repo =~ %r{github\.com:([^/]+)/([^.]+)\.git}
       user, project = $1, $2
-      "http://github.com/#{user}/#{project}/tree/#{branch}/#{path}"
+      response = nil
+      url_path = "/#{user}/#{project}/tree/#{branch}/#{path}"
+      url = "http://github.com#{url_path}"
+      response=nil
+      Net::HTTP.start('github.com', 80) { |http| response = http.head(url_path) }
+      url = "https://github.com#{url_path}" if response and response.code.to_i == 302
+      url
     end
   end
   
