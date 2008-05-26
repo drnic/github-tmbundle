@@ -21,8 +21,9 @@ Source can be viewed or forked via GitHub: [http://github.com/drnic/github-tmbun
 
 To install without Git:
 
-		wget http://github.com/drnic/github-tmbundle/tarball/master -O GitHub.tmbundle.tar.gz
-		open GitHub.tmbundle.tar.gz
+		wget http://github.com/drnic/github-tmbundle/tarball/master
+		open drnic-github-tmbundle*
+		rm drnic-github-tmbundle*.tar.gz
 		mv drnic-github-tmbundle* GitHub.tmbundle
 
 Either way, restart TextMate or select "Reload Bundles" from the Bundles >> Bundle Editor menu.
