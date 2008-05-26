@@ -4,6 +4,11 @@
 <dict>
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
+	<key>command</key>
+	<string>RUBYLIB="$TM_BUNDLE_SUPPORT/lib:$RUBYLIB"
+"${TM_RUBY:=ruby}" -- "${TM_BUNDLE_SUPPORT}/bin/show_in_github.rb"
+
+</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
@@ -11,7 +16,7 @@
 	<key>name</key>
 	<string>Show in GitHub</string>
 	<key>output</key>
-	<string>discard</string>
+	<string>showAsTooltip</string>
 	<key>uuid</key>
 	<string>DC4D5C6F-80DA-4FDF-815F-EEF68C1FC3E9</string>
 </dict>
