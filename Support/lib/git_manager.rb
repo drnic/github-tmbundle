@@ -35,12 +35,7 @@ class GitManager
     if repo =~ %r{github\.com:([^/]+)/([^.]+)\.git}
       user, project = $1, $2
       response = nil
-      url_path = "/#{user}/#{project}/tree/#{branch}/#{path}"
-      url = "http://github.com#{url_path}"
-      response=nil
-      Net::HTTP.start('github.com', 80) { |http| response = http.head(url_path) }
-      url = "https://github.com#{url_path}" if response and response.code.to_i == 302
-      url
+      url_head(user, project, branch) + "/#{path}"
     end
   end
   
@@ -68,6 +63,18 @@ class GitManager
 
   def repo_for_remote(remote)
     config["remote.#{remote}.url"]
+  end
+  
+  def url_head(user, project, branch)
+    project_path = "/#{user}/#{project}/tree/#{branch}"
+    project_public?(project_path) ? 
+      "http://github.com#{project_path}" : "https://github.com#{project_path}"
+  end
+  
+  def project_public?(project_path)
+    response=nil
+    Net::HTTP.start('github.com', 80) { |http| response = http.head(project_path) }
+    response and response.code.to_i == 302
   end
   
 end
