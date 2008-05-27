@@ -69,4 +69,14 @@ class TestShowInGithub < Test::Unit::TestCase
     expected = "https://github.com/drnic/newgem/tree/master/to/file"
     assert_equal(expected, url)
   end
+  
+  def test_anonymous_repo
+    GitManager.any_instance.stubs(:config).returns({
+      "remote.origin.url"=>"git://github.com/drnic/newgem.git"
+    })
+    GitManager.any_instance.stubs(:working_path).returns("/some/path")
+    url = ShowInGitHub.url_for("/some/path/to/file")
+    expected = "http://github.com/drnic/newgem/tree/master/to/file"
+    assert_equal(expected, url)
+  end
 end

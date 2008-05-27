@@ -32,7 +32,7 @@ class GitManager
     file ||= target_file
     repo = repo_for_remote(github_remote)
     path = file.gsub(working_path, '').gsub(%r{\A/},'')
-    if repo =~ %r{github\.com:([^/]+)/([^.]+)\.git}
+    if repo =~ %r{github\.com[:/]([^/]+)/([^.]+)\.git}
       user, project = $1, $2
       response = nil
       url_head(user, project, branch) + "/#{path}"
