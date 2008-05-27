@@ -2,7 +2,7 @@ require "test/unit"
 $:.unshift(File.dirname(__FILE__) + "/../lib")
 
 require 'rubygems'
-%w[mocha Shoulda].each do |gem_name|
+%w[mocha].each do |gem_name|
   begin
     require gem_name
   rescue LoadError => e
