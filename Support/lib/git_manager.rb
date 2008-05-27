@@ -39,17 +39,22 @@ class GitManager
     end
   end
   
+  def relative_file(file=nil)
+    file ||= target_file
+    file = File.expand_path(file).sub(%r{\A#{working_path}/}, '')
+  end
+
   def git?
     git
+  end
+  
+  def working_path
+    git.instance_variable_get("@working_directory").path
   end
   
   protected
   def config
     git.config
-  end
-  
-  def working_path
-    git.instance_variable_get("@working_directory").path
   end
   
   def find_working_dir
