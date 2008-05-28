@@ -43,6 +43,19 @@ class GitManager
     file ||= target_file
     file = File.expand_path(file).sub(%r{\A#{working_path}/}, '')
   end
+  
+  # Returns the Git::Object::Commit that adds a +line+
+  def find_commit_with_line(line)
+    git.log.path(@file).each do |commit|
+      return commit if line_in_diff?(commit.diff_parent.to_s, line)
+    end
+  end
+  
+  # Check if the exact line was added in a specific commit (via its parent_diff)
+  # TODO - Ensure line is within specific +file+, else might get match within wrong file
+  def line_in_diff?(parent_diff, line)
+    parent_diff =~ %r{^-#{line}$}
+  end
 
   def git?
     git

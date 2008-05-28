@@ -1,6 +1,7 @@
 require "test/unit"
 $:.unshift(File.dirname(__FILE__) + "/../lib")
 
+require "pp"
 require 'rubygems'
 %w[mocha].each do |gem_name|
   begin
