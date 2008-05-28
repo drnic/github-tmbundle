@@ -10,8 +10,9 @@ class TestShowInGithub < Test::Unit::TestCase
   def test_do_nothing_if_file_not_under_git_repo
     GitManager.any_instance.stubs(:git?).returns(false)
     GitManager.any_instance.stubs(:config).returns(nil)
-    url = ShowInGitHub.url_for("/some/path/to/file")
-    assert_nil(url)
+    assert_raise(NotGitRepositoryError) do
+      ShowInGitHub.url_for("/some/path/to/file")
+    end
   end
   
   def test_do_nothing_if_no_repo_is_with_github
@@ -19,8 +20,9 @@ class TestShowInGithub < Test::Unit::TestCase
       "remote.rubyforge.fetch"=>"refs/heads/*:refs/remotes/rubyforge/*", 
       "remote.rubyforge.url"=>"gitosis@rubyforge.org:newgem.git"
     })
-    url = ShowInGitHub.url_for("/some/path/to/file")
-    assert_nil(url)
+    assert_raise(NotGitHubRepositoryError) do
+      ShowInGitHub.url_for("/some/path/to/file")
+    end
   end
   
   def test_construct_github_url_for_file
