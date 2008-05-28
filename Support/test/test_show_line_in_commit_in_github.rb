@@ -42,13 +42,10 @@ index 63b416f..0000000
   
   def test_github_url_for_line_in_commit
     url = ShowInGitHub.line_to_github_url(File.expand_path(__FILE__), "  def test_file_index_within_multi_file_commit")
-    expected = "github.com/drnic/github-tmbundle/commit/c9e07eb199092fef6a0b744915d49b0aeb646221#diff-2"
-    assert_match(/#{expected}/, url)
+    expected = "http://github.com/drnic/github-tmbundle/commit/c9e07eb199092fef6a0b744915d49b0aeb646221#diff-2"
+    assert_equal(expected, url)
   end
   
   should_eventually "test_file_index_within_multi_file_commit" do
-  end
-  
-  should_eventually "support lines with { } in it; that is a better line comparer in line_in_diff?" do
   end
 end

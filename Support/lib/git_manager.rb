@@ -87,11 +87,11 @@ class GitManager
   
   def url_head(user, project, branch)
     project_path = "/#{user}/#{project}/tree/#{branch}"
-    project_public?(project_path) ? 
-      "http://github.com#{project_path}" : "https://github.com#{project_path}"
+    project_private?(project_path) ? 
+      "https://github.com#{project_path}" : "http://github.com#{project_path}"
   end
   
-  def project_public?(project_path)
+  def project_private?(project_path)
     response=nil
     Net::HTTP.start('github.com', 80) { |http| response = http.head(project_path) }
     response and response.code.to_i == 302
