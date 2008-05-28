@@ -56,7 +56,7 @@ class GitManager
   # Check if the exact line was added in a specific commit (via its parent_diff)
   # TODO - Ensure line is within specific +file+, else might get match within wrong file
   def line_in_diff?(parent_diff, line)
-    parent_diff =~ %r{^-#{line}$}
+    parent_diff.to_s.split("\n").find { |diff_line| diff_line == "-#{line}" }
   end
 
   def git?

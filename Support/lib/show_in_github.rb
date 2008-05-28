@@ -19,6 +19,7 @@ module ShowInGitHub
     return nil unless file_url = url_for(file_path)
     project_url = file_url.sub(%r{/tree/.*/#{File.basename(file_path)}$}, '')
     commit = git.find_commit_with_line(line_str)
+    return nil unless commit
     file_index = commit.file_paths.index(git.relative_file(file_path))
     "#{project_url}/commit/#{commit.to_s}#diff-#{file_index}"
   end

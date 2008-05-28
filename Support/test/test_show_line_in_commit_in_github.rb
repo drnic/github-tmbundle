@@ -48,4 +48,7 @@ index 63b416f..0000000
   
   should_eventually "test_file_index_within_multi_file_commit" do
   end
+  
+  should_eventually "support lines with { } in it; that is a better line comparer in line_in_diff?" do
+  end
 end

@@ -4,6 +4,11 @@
 <dict>
 	<key>name</key>
 	<string>GitHub</string>
+	<key>ordering</key>
+	<array>
+		<string>DC4D5C6F-80DA-4FDF-815F-EEF68C1FC3E9</string>
+		<string>67262491-0033-4FF6-9AB7-46187500012D</string>
+	</array>
 	<key>uuid</key>
 	<string>D79413BD-058B-4D38-9A99-776E2088932F</string>
 </dict>
