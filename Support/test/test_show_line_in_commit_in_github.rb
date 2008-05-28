@@ -39,9 +39,7 @@ index 63b416f..0000000
     assert git.line_in_diff?(diff_parent, current_line), "should find line in diff"
     assert !git.line_in_diff?(diff_parent, "-" + current_line), "should not find modded line in diff"
   end
-
-  def test_file_index_within_multi_file_commit
-    
-  end
   
+  def test_file_index_within_multi_file_commit
+  end
 end

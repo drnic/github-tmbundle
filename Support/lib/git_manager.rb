@@ -1,5 +1,6 @@
 gem 'git', '>=1.0.0'
 require 'git'
+require 'git-ext/commit'
 require 'net/http'
 
 class GitManager
