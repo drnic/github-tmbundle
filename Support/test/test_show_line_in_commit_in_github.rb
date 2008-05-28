@@ -40,6 +40,12 @@ index 63b416f..0000000
     assert !git.line_in_diff?(diff_parent, "-" + current_line), "should not find modded line in diff"
   end
   
-  def test_file_index_within_multi_file_commit
+  def test_github_url_for_line_in_commit
+    url = ShowInGitHub.line_to_github_url(File.expand_path(__FILE__), "  def test_file_index_within_multi_file_commit")
+    expected = "github.com/drnic/github-tmbundle/commit/c9e07eb199092fef6a0b744915d49b0aeb646221#diff-2"
+    assert_match(/#{expected}/, url)
+  end
+  
+  should_eventually "test_file_index_within_multi_file_commit" do
   end
 end

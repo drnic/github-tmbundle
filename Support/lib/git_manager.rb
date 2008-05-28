@@ -50,6 +50,7 @@ class GitManager
     git.log.path(@file).each do |commit|
       return commit if line_in_diff?(commit.diff_parent.to_s, line)
     end
+    nil
   end
   
   # Check if the exact line was added in a specific commit (via its parent_diff)
