@@ -29,6 +29,16 @@ class GitManager
     end
   end
   
+  def best_github_remote
+    remotes = github_remotes()
+    selected_remote = 'github' if remotes.include?('github')
+    selected_remote ||= 'origin' if remotes.include?('origin')
+    selected_remote ||= remotes.first
+    raise NotGitHubRepositoryError unless selected_remote
+    
+    return selected_remote
+  end
+  
   def file_to_github_url(github_remote, branch='master', file=nil)
     file ||= target_file
     repo = repo_for_remote(github_remote)
