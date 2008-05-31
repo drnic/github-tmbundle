@@ -91,6 +91,7 @@ class GitManager
     while !@git && path_bits.length > 1
       path_bits.pop unless (@git = Git.open(path_bits.join('/')) rescue nil)
     end
+    raise NotGitRepositoryError unless @git
   end
 
   def repo_for_remote(remote)

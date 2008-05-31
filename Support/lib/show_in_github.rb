@@ -11,7 +11,6 @@ module ShowInGitHub
   
   def url_for(file_path)
     @git = GitManager.new(file_path)
-    raise NotGitRepositoryError unless git.git?
     git.file_to_github_url(git.best_github_remote())
   end
   
