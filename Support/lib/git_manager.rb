@@ -38,6 +38,14 @@ class GitManager
     
     return selected_remote
   end
+
+  def github_url_for_project(github_remote=nil)
+    github_remote ||= best_github_remote()
+    repo = repo_for_remote(github_remote)
+    if repo =~ %r{github\.com[:/]([^/]+)/([^.]+)\.git}
+      url_head($1, $2)
+    end
+  end  
   
   def file_to_github_url(github_remote, branch='master', file=nil)
     file ||= target_file
