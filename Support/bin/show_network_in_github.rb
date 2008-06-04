@@ -6,7 +6,7 @@ require "git_manager"
 
 begin
   git = GitManager.new(ENV['TM_FILEPATH'])
-  url = git.github_url_for_project()
+  url = git.github_url_for_project
 
   `open #{url}network`
 rescue NotGitRepositoryError

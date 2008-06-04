@@ -30,7 +30,7 @@ class GitManager
   end
   
   def best_github_remote
-    remotes = github_remotes()
+    remotes = github_remotes
     selected_remote = 'github' if remotes.include?('github')
     selected_remote ||= 'origin' if remotes.include?('origin')
     selected_remote ||= remotes.first
@@ -40,7 +40,7 @@ class GitManager
   end
 
   def github_url_for_project(github_remote=nil)
-    github_remote ||= best_github_remote()
+    github_remote ||= best_github_remote
     repo = repo_for_remote(github_remote)
     if repo =~ %r{github\.com[:/]([^/]+)/([^.]+)\.git}
       url_head($1, $2)

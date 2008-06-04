@@ -11,7 +11,7 @@ module ShowInGitHub
   
   def url_for(file_path)
     @git = GitManager.new(file_path)
-    git.file_to_github_url(git.best_github_remote())
+    git.file_to_github_url(git.best_github_remote)
   end
   
   def line_to_github_url(file_path, line_str)
