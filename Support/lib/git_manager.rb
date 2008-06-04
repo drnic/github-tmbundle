@@ -107,7 +107,7 @@ class GitManager
   def project_private?(project_path)
     response=nil
     Net::HTTP.start('github.com', 80) { |http| response = http.head(project_path) }
-    response and response.code.to_i == 302
+    response and response.code.to_i == 302 and response['location'] =~ %r{https:}
   end
   
 end
