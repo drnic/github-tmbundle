@@ -98,8 +98,9 @@ class GitManager
     config["remote.#{remote}.url"]
   end
   
-  def url_head(user, project, branch)
-    project_path = "/#{user}/#{project}/tree/#{branch}"
+  def url_head(user, project, branch='')
+    branch = "tree/#{branch}" if branch != ''
+    project_path = "/#{user}/#{project}/#{branch}"
     project_private?(project_path) ? 
       "https://github.com#{project_path}" : "http://github.com#{project_path}"
   end
