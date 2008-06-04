@@ -29,7 +29,25 @@ class GitManager
     end
   end
   
-  def file_to_github_url(github_remote, branch=nil, file=nil)
+  def best_github_remote
+    remotes = github_remotes()
+    selected_remote = 'github' if remotes.include?('github')
+    selected_remote ||= 'origin' if remotes.include?('origin')
+    selected_remote ||= remotes.first
+    raise NotGitHubRepositoryError unless selected_remote
+    
+    return selected_remote
+  end
+
+  def github_url_for_project(github_remote=nil)
+    github_remote ||= best_github_remote()
+    repo = repo_for_remote(github_remote)
+    if repo =~ %r{github\.com[:/]([^/]+)/([^.]+)\.git}
+      url_head($1, $2)
+    end
+  end  
+  
+  def file_to_github_url(github_remote, branch='master', file=nil)
     file ||= target_file
     branch ||= @git.current_branch
     repo = repo_for_remote(github_remote)
@@ -82,14 +100,16 @@ class GitManager
     while !@git && path_bits.length > 1
       path_bits.pop unless (@git = Git.open(path_bits.join('/')) rescue nil)
     end
+    raise NotGitRepositoryError unless @git
   end
 
   def repo_for_remote(remote)
     config["remote.#{remote}.url"]
   end
   
-  def url_head(user, project, branch)
-    project_path = "/#{user}/#{project}/tree/#{branch}"
+  def url_head(user, project, branch='')
+    branch = "tree/#{branch}" if branch != ''
+    project_path = "/#{user}/#{project}/#{branch}"
     project_private?(project_path) ? 
       "https://github.com#{project_path}" : "http://github.com#{project_path}"
   end
@@ -97,7 +117,7 @@ class GitManager
   def project_private?(project_path)
     response=nil
     Net::HTTP.start('github.com', 80) { |http| response = http.head(project_path) }
-    response and response.code.to_i == 302
+    response and response.code.to_i == 302 and response['location'] =~ %r{https:}
   end
   
 end
