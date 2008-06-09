@@ -16,6 +16,7 @@ To install via Git:
 
 		cd ~/"Library/Application Support/TextMate/Bundles/"
 		git clone git://github.com/drnic/github-tmbundle.git "GitHub.tmbundle"
+		osascript -e 'tell app "TextMate" to reload bundles'
 
 Source can be viewed or forked via GitHub: [http://github.com/drnic/github-tmbundle/tree/master](http://github.com/drnic/github-tmbundle/tree/master)
 
@@ -25,6 +26,7 @@ To install without Git:
 		open drnic-github-tmbundle*
 		rm drnic-github-tmbundle*.tar.gz
 		mv drnic-github-tmbundle* GitHub.tmbundle
+		osascript -e 'tell app "TextMate" to reload bundles'
 
 Either way, restart TextMate or select "Reload Bundles" from the Bundles >> Bundle Editor menu.
 
