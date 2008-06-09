@@ -2,12 +2,13 @@
 
 $:.unshift(File.dirname(__FILE__) + "/../lib")
 require "rubygems"
-require "show_in_github"
+require "git_manager"
 
 begin
-  url = ShowInGitHub.url_for(ENV['TM_FILEPATH'])
-  lines = ENV['TM_INPUT_START_LINE'] ? "#{ENV['TM_INPUT_START_LINE']}-#{ENV['TM_LINE_NUMBER']}" : ENV['TM_LINE_NUMBER']
-  `open #{url}#L#{lines}`
+  git = GitManager.new(ENV['TM_FILEPATH'])
+  url = git.github_url_for_project
+
+  `open #{url}network`
 rescue NotGitRepositoryError
   puts "File/project not a git repository"
 rescue NotGitHubRepositoryError

@@ -11,13 +11,7 @@ module ShowInGitHub
   
   def url_for(file_path)
     @git = GitManager.new(file_path)
-    raise NotGitRepositoryError unless git.git?
-    remotes = git.github_remotes
-    selected_remote = 'github' if remotes.include?('github')
-    selected_remote ||= 'origin' if remotes.include?('origin')
-    selected_remote ||= remotes.first
-    raise NotGitHubRepositoryError unless selected_remote
-    git.file_to_github_url(selected_remote)
+    git.file_to_github_url(git.best_github_remote)
   end
   
   # TODO - investigate using "git blame -l -s -L 3,3 app/models/user.rb" instead

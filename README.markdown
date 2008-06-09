@@ -1,6 +1,15 @@
 GitHub TextMate bundle
 --------------------
 
+Contains the following commands specific to the current file:
+
+* Show in GitHub - opens the current file in github, and selects the same lines that are selected in the current file
+* Annotate/Blame/Comment Line - finds the original commit where this line was created and opens that commit in GitHub, whereby you can use the GitHub comment feature
+
+Contains the following commands specific to the repository:
+
+* Show Network in GitHub - opens the "Network" view in GitHub so you can see who has interesting commits that you don't have
+
 Prerequisites
 =============
 
