@@ -20,6 +20,9 @@ module ShowInGitHub
     git.file_to_github_url(selected_remote)
   end
   
+  # TODO - investigate using "git blame -l -s -L 3,3 app/models/user.rb" instead
+  # -l complete hash
+  # -s strips user fu
   def line_to_github_url(file_path, line_str)
     return nil unless file_url = url_for(file_path)
     project_url = file_url.sub(%r{/tree/.*/#{File.basename(file_path)}$}, '')
