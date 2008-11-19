@@ -29,9 +29,12 @@ private
     when /linux/
       return content if `which xclip`.strip == ''
       IO.popen('xclip', 'r+') { |clip| clip.puts content }
-    end
-
-    content
+    when /i386-cygwin/
+    	return content if `which putclip`.strip == ''
+      IO.popen('putclip', 'r+') { |clip| clip.puts content }
+  	end
+  	
+  	content
   end
 
   def data(name, ext, content, private_gist)
