@@ -14,9 +14,9 @@ module Gist
     open(@@gist_url % gist_id).read
   end
 
-  def write(content, private_gist)
+  def write(gistname, content, private_gist)
     url = URI.parse('http://gist.github.com/gists')
-    req = Net::HTTP.post_form(url, data(nil, nil, content, private_gist))
+    req = Net::HTTP.post_form(url, data(gistname, nil, content, private_gist))
     copy req['Location']
   end
 
