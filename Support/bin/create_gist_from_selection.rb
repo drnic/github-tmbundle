@@ -49,7 +49,7 @@ if ENV['TM_SELECTED_TEXT']
   gistname = "snippet" << "." << get_extension
 else
   selection = STDIN.read
-  gistname = "file" << "." << get_extension
+  gistname = ENV['TM_FILEPATH'] ? ENV['TM_FILEPATH'].split('/')[-1] : "file" << "." << get_extension
 end
 
 if url = Gist.write(gistname, selection, ARGV[0] == "private" ? true : false)
