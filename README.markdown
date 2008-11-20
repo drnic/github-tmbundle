@@ -10,6 +10,11 @@ Contains the following commands specific to the repository:
 
 * Show Network in GitHub - opens the "Network" view in GitHub so you can see who has interesting commits that you don't have
 
+Contains the following commands for creating [gists](http://gist.github.com):
+
+* Create gist from selection - will create a gist using your GitHub credentials (see below). It will either use the current selection, or the whole file, using the filename and the currently active language. The URL of the gist will be copied to your clipboard.
+* Create private gist from selection - same as above, but the Gist will be private.
+
 Prerequisites
 =============
 
