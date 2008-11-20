@@ -44,7 +44,8 @@ To install without Git:
 
 Either way, restart TextMate or select "Reload Bundles" from the Bundles >> Bundle Editor menu.
 
-To enable [Gist](http://gist.github.com) support, make sure you've followed the instructions on your [account page](https://github.com/account) for adding your GitHub user and API Token to your global Git config.
+To enable [Gist](http://gist.github.com) support, make sure you've followed the instructions on your [account page](https://github.com/account) for adding your GitHub user and API Token to your global Git config. You can
+create gists without specifying your credentials, but they won't be associated with your account.
 
 Author
 ======
