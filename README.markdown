@@ -40,7 +40,7 @@ To install without Git:
 		mkdir -p ~/Library/Application\ Support/TextMate/Bundles
 		cd ~/Library/Application\ Support/TextMate/Bundles
 		wget http://github.com/drnic/github-tmbundle/tarball/master
-		tar zvf drnic-github-tmbundle*.tar.gz
+		tar zxf drnic-github-tmbundle*.tar.gz
 		rm drnic-github-tmbundle*.tar.gz
 		mv drnic-github-tmbundle* GitHub.tmbundle
 		osascript -e 'tell app "TextMate" to reload bundles'
