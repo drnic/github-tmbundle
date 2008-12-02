@@ -28,7 +28,8 @@ Installation
 
 To install via Git:
 
-		cd ~/"Library/Application Support/TextMate/Bundles/"
+		mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+		cd ~/Library/Application\ Support/TextMate/Bundles
 		git clone git://github.com/drnic/github-tmbundle.git "GitHub.tmbundle"
 		osascript -e 'tell app "TextMate" to reload bundles'
 
@@ -36,6 +37,8 @@ Source can be viewed or forked via GitHub: [http://github.com/drnic/github-tmbun
 
 To install without Git:
 
+		mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+		cd ~/Library/Application\ Support/TextMate/Bundles
 		wget http://github.com/drnic/github-tmbundle/tarball/master
 		open drnic-github-tmbundle*
 		rm drnic-github-tmbundle*.tar.gz
