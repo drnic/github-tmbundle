@@ -44,7 +44,7 @@ module Gist
       gistname = "snippet" << "." << get_extension
     else
       selection = STDIN.read
-      gistname = ENV['TM_FILEPATH'] ? ENV['TM_FILEPATH'].split('/')[-1] : "file" << "." << get_extension
+      gistname = ENV['TM_FILEPATH'] ? ENV['TM_FILEPATH'].sub(ENV['TM_PROJECT_DIRECTORY'], '') : "file" << "." << get_extension
     end
     
     add_file(gistname, selection)
