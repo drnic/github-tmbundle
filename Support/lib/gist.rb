@@ -44,7 +44,7 @@ module Gist
       gistname = "snippet" << "." << get_extension
     else
       selection = STDIN.read
-      gistname = ENV['TM_FILEPATH'] ? ENV['TM_FILEPATH'].sub(ENV['TM_PROJECT_DIRECTORY'].to_s, '') : "file" << "." << get_extension
+      gistname = get_gist_name
     end
     
     add_file(gistname, selection)
@@ -86,6 +86,14 @@ module Gist
     when /source\.lex/ : "tex"
     when /text\.xml/, /text.xml.xsl/, /source.plist/, /text.xml.plist/ : "xml"
     else "txt"
+    end
+  end
+  
+  def get_gist_name
+    if filepath = ENV['TM_FILEPATH']
+      ENV['TM_PROJECT_DIRECTORY'] ? filepath.sub(ENV['TM_PROJECT_DIRECTORY'], '') : File.basename(filepath)
+    else
+      "file" << "." << get_extension
     end
   end
 
