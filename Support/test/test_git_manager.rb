@@ -21,4 +21,14 @@ class TestGitManager < Test::Unit::TestCase
     expected = %w[origin]
     assert_equal(expected, @git.github_remotes)
   end
+  
+  def test_github_pages_account_remote_urls_can_be_parsed
+    @git.stubs(:config).returns({
+      "user.name"=>"Dr Nic Williams", "user.email"=>"drnicwilliams@gmail.com", 
+      "remote.origin.url"=>"git@github.com:railscampau/railscampau.github.com.git", 
+      "remote.origin.fetch"=>"refs/heads/*:refs/remotes/origin/*"
+    })
+    expected = "http://github.com/railscampau/railscampau.github.com/"
+    assert_equal(expected, @git.github_url_for_project)
+  end
 end

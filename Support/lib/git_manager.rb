@@ -39,11 +39,18 @@ class GitManager
     return selected_remote
   end
 
+  def user_project_from_repo(repo)
+    if repo =~ %r{github\.com[:/]([^/]+)/(.+)\.git}
+      return {:user => $1, :project => $2}
+    end
+    return 
+  end
+  
   def github_url_for_project(github_remote=nil)
     github_remote ||= best_github_remote
     repo = repo_for_remote(github_remote)
-    if repo =~ %r{github\.com[:/]([^/]+)/([^.]+)\.git}
-      url_head($1, $2)
+    if user_project = user_project_from_repo(repo)
+      url_head(user_project)
     end
   end  
   
@@ -52,10 +59,10 @@ class GitManager
     branch ||= @git.current_branch
     repo = repo_for_remote(github_remote)
     path = file.gsub(working_path, '').gsub(%r{\A/},'')
-    if repo =~ %r{github\.com[:/]([^/]+)/([^.]+)\.git}
+    if user_project = user_project_from_repo(repo)
       user, project = $1, $2
       response = nil
-      url_head(user, project, branch) + "/#{path}"
+      url_head(user_project, branch) + "/#{path}"
     end
   end
   
@@ -98,7 +105,8 @@ class GitManager
     path_bits = path.split('/') # => ["", "Users", "drnic", "Documents", "ruby", "gems", "newgem", "bin"]
     @git = nil
     while !@git && path_bits.length > 1
-      path_bits.pop unless (@git = Git.open(path_bits.join('/')) rescue nil)
+      path = path_bits.join('/')
+      path_bits.pop unless (@git = Git.open(path) rescue nil)
     end
     raise NotGitRepositoryError unless @git
   end
@@ -107,9 +115,9 @@ class GitManager
     config["remote.#{remote}.url"]
   end
   
-  def url_head(user, project, branch='')
+  def url_head(user_project, branch='')
     branch = "tree/#{branch}" if branch != ''
-    project_path = "/#{user}/#{project}/#{branch}"
+    project_path = "/#{user_project[:user]}/#{user_project[:project]}/#{branch}"
     project_private?(project_path) ? 
       "https://github.com#{project_path}" : "http://github.com#{project_path}"
   end
