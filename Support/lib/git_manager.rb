@@ -73,7 +73,7 @@ class GitManager
   
   # Returns the Git::Object::Commit that adds a +line+
   def find_commit_with_line(line)
-    git.log.path(@file).each do |commit|
+    git.log.path(relative_file).each do |commit|
       return commit if line_in_diff?(commit.diff_parent.to_s, line)
     end
     nil
