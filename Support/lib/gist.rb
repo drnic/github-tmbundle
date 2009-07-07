@@ -64,6 +64,7 @@ module Gist
     # emacs-lisp-mode : "el"
     when /source\.erlang/ : "erl"
     when /source\.haskell/, "text.tex.latex.haskel" : "hs"
+    when /text\.html\.markdown/ : "md"
     when /text\.html/ : "html"
     when /source\.io/ : "io"
     when /source\.java/ : "java"
