@@ -17,7 +17,7 @@ module Gist
   
   def add_file(name, content)
     load_files
-    @@files << {:name => name, :content => content}
+    @@files << {'name' => name, 'content' => content}
     puts "#{name} added."
     save_files
   end
@@ -55,37 +55,37 @@ module Gist
   def get_extension
     scope = ENV["TM_SCOPE"].split[0]
     case scope
-    when /source\.actionscript/ : "as"
-    when /source\.c/, "source.objc" : "c"
-    when /source\.c\+\+/, "source.objc++" : "cpp"
-    # common-lisp-mode : "el"
-    when /source\.css/ : "css"
-    when /source\.diff/, "meta.diff.range" : "diff"
-    # emacs-lisp-mode : "el"
-    when /source\.erlang/ : "erl"
-    when /source\.haskell/, "text.tex.latex.haskel" : "hs"
-    when /text\.html\.markdown/ : "md"
-    when /text\.html/ : "html"
-    when /source\.io/ : "io"
-    when /source\.java/ : "java"
-    when /source\.js/ : "js"
-    # jde-mode : "java"
-    # js2-mode : "js"
-    when /source\.lua/ : "lua"
-    when /source\.ocaml/ : "ml"
-    when /source\.objc/, "source.objc++" : "m"
-    when /source\.perl/ : "pl"
-    when /source\.php/ : "php"
-    when /source\.python/ : "sc"
-    when /source\.ruby/ : "rb" # Emacs bundle uses rbx
-    when /text\.plain/ : "txt"
-    when /source\.sql/ : "sql"
-    when /source\.scheme/ : "scm"
-    when /source\.smalltalk/ : "st"
-    when /source\.shell/ : "sh"
-    when /source\.tcl/, "text.html.tcl" : "tcl"
-    when /source\.lex/ : "tex"
-    when /text\.xml/, /text.xml.xsl/, /source.plist/, /text.xml.plist/ : "xml"
+    when /source\.actionscript/ ; "as"
+    when /source\.c/, "source.objc" ; "c"
+    when /source\.c\+\+/, "source.objc++" ; "cpp"
+    # common-lisp-mode ; "el"
+    when /source\.css/ ; "css"
+    when /source\.diff/, "meta.diff.range" ; "diff"
+    # emacs-lisp-mode ; "el"
+    when /source\.erlang/ ; "erl"
+    when /source\.haskell/, "text.tex.latex.haskel" ; "hs"
+    when /text\.html\.markdown/ ; "md"
+    when /text\.html/ ; "html"
+    when /source\.io/ ; "io"
+    when /source\.java/ ; "java"
+    when /source\.js/ ; "js"
+    # jde-mode ; "java"
+    # js2-mode ; "js"
+    when /source\.lua/ ; "lua"
+    when /source\.ocaml/ ; "ml"
+    when /source\.objc/, "source.objc++" ; "m"
+    when /source\.perl/ ; "pl"
+    when /source\.php/ ; "php"
+    when /source\.python/ ; "sc"
+    when /source\.ruby/ ; "rb" # Emacs bundle uses rbx
+    when /text\.plain/ ; "txt"
+    when /source\.sql/ ; "sql"
+    when /source\.scheme/ ; "scm"
+    when /source\.smalltalk/ ; "st"
+    when /source\.shell/ ; "sh"
+    when /source\.tcl/, "text.html.tcl" ; "tcl"
+    when /source\.lex/ ; "tex"
+    when /text\.xml/, /text.xml.xsl/, /source.plist/, /text.xml.plist/ ; "xml"
     else "txt"
     end
   end
@@ -121,9 +121,9 @@ private
     params = {}
     @@files.each_with_index do |file, i|
       params.merge!({
-        "file_ext[gistfile#{i+1}]"      => nil,
-        "file_name[gistfile#{i+1}]"     => file[:name],
-        "file_contents[gistfile#{i+1}]" => file[:content]
+        "file_ext[gistfile#{i+1}]"      => '',
+        "file_name[gistfile#{i+1}]"     => file['name'],
+        "file_contents[gistfile#{i+1}]" => file['content']
       })
     end
     params.merge(private_gist ? { 'private' => 'on' } : {}).merge(auth)
@@ -133,7 +133,7 @@ private
     user  = `git config --global github.user`.strip
     token = `git config --global github.token`.strip
 
-    user.empty? ? {} : { :login => user, :token => token }
+    user.empty? ? {} : { 'login' => user, 'token' => token }
   end
 end
 
