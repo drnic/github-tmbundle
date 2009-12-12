@@ -58,3 +58,4 @@ With contributions from:
 * [Pedro Melo](http://github.com/melo)
 * [Mathias Meyer](http://github.com/mattmatt)
 * [Geoff Cheshire](http://github.com/gtcaz)
+* [Loren Segal](http://github.com/lsegal)
