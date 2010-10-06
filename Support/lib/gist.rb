@@ -23,12 +23,20 @@ module Gist
   end
   
   def send(private_gist)
-    load_files
-    url = URI.parse('http://gist.github.com/gists')
-    req = Net::HTTP.post_form(url, data(private_gist))
-    url = copy req['Location']
-    puts "Created gist at #{url}. URL copied to clipboard."
-    clear
+     load_files
+     url = URI.parse('http://gist.github.com/gists')
+     
+     # Use environment variable "HTTP_PROXY" if it exists
+     proxy = ENV['HTTP_PROXY']
+     if proxy
+       proxy = proxy.split(/:/)
+       host = proxy[0]
+       port = proxy[1]
+     end
+     req = Net::HTTP::Proxy(host, port).post_form(url, data(private_gist))
+     url = copy req['Location']
+     puts "Created gist at #{url}. URL copied to clipboard."
+     clear
   end
   
   def clear
