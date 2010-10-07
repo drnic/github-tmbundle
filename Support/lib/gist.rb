@@ -27,7 +27,7 @@ module Gist
      url = URI.parse('http://gist.github.com/gists')
      
      # Use environment variable "HTTP_PROXY" if it exists
-     host, port = ENV['http_proxy'].split(/:/) unless !ENV['http_proxy']
+     host, port = ENV['http_proxy'].split(/:/) if ENV['http_proxy']
      req = Net::HTTP::Proxy(host, port).post_form(url, data(private_gist))
      url = copy req['Location']
      puts "Created gist at #{url}. URL copied to clipboard."
