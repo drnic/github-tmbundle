@@ -116,7 +116,7 @@ class GitManager
   end
   
   def url_head(user_project, branch='')
-    branch = "tree/#{branch}" if branch != ''
+    branch = "blob/#{branch}" if branch != ''
     project_path = "/#{user_project[:user]}/#{user_project[:project]}/#{branch}"
     project_private?(project_path) ? 
       "https://github.com#{project_path}" : "http://github.com#{project_path}"
