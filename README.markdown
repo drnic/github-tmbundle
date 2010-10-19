@@ -59,3 +59,4 @@ With contributions from:
 * [Mathias Meyer](http://github.com/mattmatt)
 * [Geoff Cheshire](http://github.com/gtcaz)
 * [Loren Segal](http://github.com/lsegal)
+* [Jesse Newland](http://github.com/jnewland)
