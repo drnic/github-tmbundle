@@ -28,7 +28,7 @@ class TestGitManager < Test::Unit::TestCase
       "remote.origin.url"=>"git@github.com:railscampau/railscampau.github.com.git", 
       "remote.origin.fetch"=>"refs/heads/*:refs/remotes/origin/*"
     })
-    expected = "http://github.com/railscampau/railscampau.github.com/"
+    expected = "https://github.com/railscampau/railscampau.github.com/"
     assert_equal(expected, @git.github_url_for_project)
   end
 end

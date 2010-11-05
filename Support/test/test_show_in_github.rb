@@ -4,7 +4,6 @@ require "show_in_github"
 class TestShowInGithub < Test::Unit::TestCase
   def setup
     GitManager.any_instance.stubs(:git?).returns(true)
-    GitManager.any_instance.stubs(:project_private?).returns(false)
   end
 
   def test_do_nothing_if_file_not_under_git_repo
@@ -62,7 +61,6 @@ class TestShowInGithub < Test::Unit::TestCase
   end
   
   def test_project_is_private_should_use_https
-    GitManager.any_instance.stubs(:project_private?).returns(true)
     GitManager.any_instance.stubs(:config).returns({
       "remote.origin.url"=>"git@github.com:drnic/newgem.git"
     })

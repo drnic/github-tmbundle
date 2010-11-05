@@ -118,14 +118,7 @@ class GitManager
   def url_head(user_project, branch='')
     branch = "blob/#{branch}" if branch != ''
     project_path = "/#{user_project[:user]}/#{user_project[:project]}/#{branch}"
-    project_private?(project_path) ? 
-      "https://github.com#{project_path}" : "http://github.com#{project_path}"
-  end
-  
-  def project_private?(project_path)
-    response=nil
-    Net::HTTP.start('github.com', 80) { |http| response = http.head(project_path) }
-    response and response.code.to_i == 302 and response['location'] =~ %r{https:}
+    "https://github.com#{project_path}"
   end
   
 end

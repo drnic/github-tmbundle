@@ -7,7 +7,7 @@ require 'net/http'
 module Gist
   extend self
 
-  @@gist_url = 'http://gist.github.com/%s.txt'
+  @@gist_url = 'https://gist.github.com/%s.txt'
   @@files = []
 
   def read(gist_id)
@@ -24,7 +24,7 @@ module Gist
   
   def send(private_gist)
     load_files
-    url = URI.parse('http://gist.github.com/gists')
+    url = URI.parse('https://gist.github.com/gists')
     req = Net::HTTP.post_form(url, data(private_gist))
     url = copy req['Location']
     puts "Created gist at #{url}. URL copied to clipboard."
