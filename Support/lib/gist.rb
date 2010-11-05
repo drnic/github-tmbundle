@@ -26,8 +26,13 @@ module Gist
     load_files
     url = URI.parse('https://gist.github.com/gists')
     req = Net::HTTP.post_form(url, data(private_gist))
-    url = copy req['Location']
-    puts "Created gist at #{url}. URL copied to clipboard."
+    case req
+    when Net::HTTPBadRequest
+      print "Ewww, not your fault, but something bad happened. No gist created."
+    when Net::HTTPFound
+      url = copy req['Location']
+      print "Created gist at #{url}. URL copied to clipboard."
+    end
     clear
   end
   
