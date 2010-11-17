@@ -24,13 +24,14 @@ module Gist
   
   def send(private_gist)
     load_files
-    url = URI.parse('https://gist.github.com/gists')
-    req = Net::HTTP.post_form(url, data(private_gist))
+    url = URI.parse('http://gist.github.com/api/v1/json/new')
+    req = Net::HTTP.post_form(url, data(private_gist))    
     case req
     when Net::HTTPBadRequest
       print "Ewww, not your fault, but something bad happened. No gist created."
-    when Net::HTTPFound
-      url = copy req['Location']
+    when Net::HTTPOK
+      repo = req.body.match(/repo\"\:\"(\d+)\"/)[1]
+      url = copy 'http://gist.github.com/' + repo
       print "Created gist at #{url}. URL copied to clipboard."
     end
     clear
