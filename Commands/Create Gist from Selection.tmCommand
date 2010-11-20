@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>RUBYLIB="$TM_BUNDLE_SUPPORT/lib:$RUBYLIB"
-"${TM_RUBY:=ruby}" -- "${TM_BUNDLE_SUPPORT}/bin/create_gist_from_selection.rb"</string>
+ruby -- "${TM_BUNDLE_SUPPORT}/bin/create_gist_from_selection.rb"</string>
 	<key>input</key>
 	<string>selection</string>
 	<key>keyEquivalent</key>

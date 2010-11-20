@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>RUBYLIB="$TM_BUNDLE_SUPPORT/lib:$RUBYLIB"
-"${TM_RUBY:=ruby}" -- "${TM_BUNDLE_SUPPORT}/bin/add_to_multifile_gist.rb"
+ruby -- "${TM_BUNDLE_SUPPORT}/bin/add_to_multifile_gist.rb"
 </string>
 	<key>input</key>
 	<string>selection</string>
