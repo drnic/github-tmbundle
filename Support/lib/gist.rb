@@ -30,7 +30,7 @@ module Gist
     when Net::HTTPBadRequest
       print "Ewww, not your fault, but something bad happened. No gist created."
     when Net::HTTPOK
-      repo = req.body.match(/repo\"\:\"(\d+)\"/)[1]
+      repo = req.body.scan(/\"repo\":\"(\w+)\"/).to_s
       url = copy 'http://gist.github.com/' + repo
       print "Created gist at #{url}. URL copied to clipboard."
     end
