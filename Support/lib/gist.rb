@@ -3,6 +3,8 @@
 
 require 'open-uri'
 require 'net/http'
+require 'net/https'
+
 
 module Gist
   extend self
@@ -25,12 +27,18 @@ module Gist
   def send(private_gist)
     load_files
     url = URI.parse('https://gist.github.com/gists')
-    req = Net::HTTP.post_form(url, data(private_gist))
-    case req
+    req = Net::HTTP::Post.new(url.path)
+    req.set_form_data(data(private_gist))
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    https.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+    res = https.start {|http| http.request(req) }
+    case res
     when Net::HTTPBadRequest
       print "Ewww, not your fault, but something bad happened. No gist created."
     when Net::HTTPFound
-      url = copy req['Location']
+      url = copy res['Location']
       print "Created gist at #{url}. URL copied to clipboard."
     end
     clear
