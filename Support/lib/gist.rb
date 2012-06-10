@@ -139,7 +139,7 @@ private
         "file_contents[gistfile#{i+1}]" => file['content']
       })
     end
-    params.merge(private_gist ? { 'private' => 'on' } : {}).merge(auth)
+    params.merge(private_gist ? { 'action_button' => 'private' } : {}).merge(auth)
   end
 
   def auth
